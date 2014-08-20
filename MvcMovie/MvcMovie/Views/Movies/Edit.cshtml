@@ -1,0 +1,71 @@
+﻿@model MvcMovie.Models.Movie
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Movie</legend>
+
+        @Html.HiddenFor(model => model.MovieID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MovieTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MovieTitle)
+            @Html.ValidationMessageFor(model => model.MovieTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReleaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReleaseDate)
+            @Html.ValidationMessageFor(model => model.ReleaseDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Genre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Genre)
+            @Html.ValidationMessageFor(model => model.Genre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MovieRating)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MovieRating)
+            @Html.ValidationMessageFor(model => model.MovieRating)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
