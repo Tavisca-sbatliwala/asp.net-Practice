@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcMovie.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,7 @@ namespace MvcMovie.Controllers
             return View();
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
@@ -22,10 +24,14 @@ namespace MvcMovie.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            var context = new UsersContext();
+            var username = User.Identity.Name;
+            var user = context.UserProfiles.SingleOrDefault(u => u.UserName == username);
+            ViewBag.Email = user.Email;
             return View();
         }
     }
